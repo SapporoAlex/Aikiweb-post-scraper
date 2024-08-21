@@ -27,8 +27,8 @@ async def login_aikiweb():
         await page.is_visible("#navbar_username")
 
         # Enters your username and passwords in each field
-        await page.fill('input[id="navbar_username"]', 'jamie yugawa')  # Replace with your actual username
-        await page.fill('input[id="navbar_password"]', '95544268')  # Replace with your actual password
+        await page.fill('input[id="navbar_username"]', '###')  # Replace with your actual username
+        await page.fill('input[id="navbar_password"]', '###')  # Replace with your actual password
 
         # Clicks the login button
         await page.click('body > table:nth-child(17) > tbody > tr > td:nth-child(3) > table:nth-child(2) > tbody > tr > td > div > div > div > table:nth-child(5) > tbody > tr > td:nth-child(2) > form > table > tbody > tr:nth-child(2) > td:nth-child(3) > input')
@@ -40,8 +40,8 @@ async def login_aikiweb():
         # Waits for username field to load
         await page.wait_for_selector('#userfield_txt')
 
-        # You can change DH to any username you want here
-        await page.fill('[id="userfield_txt"]', 'DH')
+        # You can change USERNAME to any username you want here
+        await page.fill('[id="userfield_txt"]', 'USERNAME')
 
         # presses enter
         await page.keyboard.press("Enter")
@@ -91,8 +91,8 @@ async def login_aikiweb():
                 # Find the username in the left column
                 username_tag = row.find('a', class_='boldusername')
 
-                # Check if the username text content is "DH"
-                if username_tag and username_tag.text == 'DH':
+                # Check if the username text content is "USERNAME"
+                if username_tag and username_tag.text == 'USERNAME':
                     # Get the post content from the right column
                     post_content = row.find_all('td')[1].text.strip()
                     posts.append(post_content)
@@ -101,9 +101,9 @@ async def login_aikiweb():
             for i, post in enumerate(posts, start=1):
                 print(f"Post {i}: {post}")
 
-            # Writes the posts from the current thread to our 'DH_posts.txt'
+            # Writes the posts from the current thread to our 'posts.txt'
             # We use the 'with open' method, so we don't need to continually save and open it for each time we add posts
-            with open('DH_posts.txt', 'w', encoding='utf-8') as file:
+            with open('posts.txt', 'w', encoding='utf-8') as file:
                 for post in posts:
                     file.write(post + "\n\n")  # Each post separated by a blank line
 
